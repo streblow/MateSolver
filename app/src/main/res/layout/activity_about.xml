@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:fillViewport="true" >
+
+<HorizontalScrollView
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:fillViewport="true" >
+
+<TableLayout
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:stretchColumns="*" >
+
+	<TableRow
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" >
+
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="left|center"
+			android:contentDescription="@string/app_name"
+			android:src="@drawable/ic_about" />
+
+		<TextView
+			android:id="@+id/info_text"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:layout_margin="10dp"
+			android:gravity="center" />
+
+	</TableRow>
+
+	<TableRow
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" >
+
+		<TextView
+			android:id="@+id/legal_text"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="10dp"
+			android:layout_span="2"
+			android:textStyle="italic" />
+
+	</TableRow>
+
+</TableLayout>
+
+</HorizontalScrollView>
+
+</ScrollView>

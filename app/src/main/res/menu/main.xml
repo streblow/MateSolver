@@ -1,0 +1,47 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_searchmate"
+        android:orderInCategory="100"
+        android:title="@string/action_searchmate"/>
+    <item
+        android:id="@+id/action_cancel_searchmate"
+        android:orderInCategory="110"
+        android:title="@string/action_cancel_searchmate"/>
+    <item
+        android:id="@+id/action_clearboard"
+        android:orderInCategory="120"
+        android:title="@string/action_clearboard"/>
+    <item
+        android:id="@+id/action_resetboard"
+        android:orderInCategory="130"
+        android:title="@string/action_resetboard"/>
+    <item
+        android:id="@+id/action_boardtofile"
+        android:orderInCategory="140"
+        android:title="@string/action_boardtofile"/>
+    <item
+        android:id="@+id/action_boardtoclipboard"
+        android:orderInCategory="150"
+        android:title="@string/action_boardtoclipboard"/>
+    <item
+        android:id="@+id/action_texttoclipboard"
+        android:orderInCategory="160"
+        android:title="@string/action_texttoclipboard"/>
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="170"
+        android:title="@string/action_settings" 
+        android:icon="@drawable/settings"/>
+    <item 
+        android:id="@+id/action_help" 
+        android:orderInCategory="180"
+        android:title="@string/action_help" 
+        android:icon="@drawable/help"/>
+    
+    <item android:id="@+id/action_about" 
+        android:orderInCategory="190"
+        android:title="@string/action_about" 
+        android:icon="@drawable/about"/>
+    
+</menu>

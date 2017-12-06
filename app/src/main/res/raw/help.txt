@@ -1,0 +1,68 @@
+MateSolver can be used to analyse chess positions.
+ There are two modes: "Analysis mode" and "Mate search".<br>
+<br>
+<h3>Modes</h3>
+In "Analysis mode" you can play moves based on a legal position,
+ where white is always considered moving first.<br>
+In mode "Mate search" you can set up a legal position and
+ let the app search for a checkmate in a given number of
+ moves, where white is also considered moving first
+ (e.g. White mates in 2 moves).<br>
+Switching between both modes will preserve the position.
+ Switching to "Analysis mode" will set white to move and
+ the number of current move to 1. A calculated mate will
+ be erased from the text area. Switching to mode
+ "Mate search" will erase all moves of "Analysis mode"
+ from the text area.<br>
+<br>
+<h3>Setting up board/Moving</h3>
+To set up a legal position, you must be in mode "Mate search".
+ In "Analysis mode" you can only reset the board to the initial
+ position (which is legal). When you switch to "Analysis mode"
+ after having set up a non legal position, you will be noticed
+ about the invalid position in the text area and no moves will
+ be accepted. The same will happen in mode "Mate search", if
+ you try to let the app search for checkmate from a non
+ legal position.<br>
+Setting up the board or moving is done by tapping the square
+ you want to move from (it is selected) and tapping the square
+ you want to move to afterwards. In mode "Mate search"
+ you can use the "pieces area" right of the board to get pieces
+ from and to remove pieces to (no matter which was selected).
+ If you tap to move to a square containing a piece, it will be
+ substituted. If you tap a selected square or a non legal one,
+ the selection is canceled.<br>
+<br>
+<h3>The app's menu</h3>
+<b>Search mate ("Mate search"):</b><br>
+The app will search for a checkmate in a given number of moves
+ (white is considered moving first). The number of moves can be
+ set up in menu item Options.<br>
+<b>Cancel mate search ("Mate search"):</b><br>
+Cancel a running mate search.<br>
+<b>Clear board ("Mate search"):</b><br>
+All pieces will be removed from the board.<br>
+<b>Reset board:</b><br>
+The initial chess board position will be set up. The text area
+ will be erased in "Analyse mode".<br>
+<b>Copy board (image) to file:</b><br>
+The current board will be drawn to a PNG-File and saved into
+ "sdcard"/Android/data/de.streblow.matesolver/Files/MateSolveryyyyMMdd_HHmm.png<br>
+<b>Copy board (text) to clipboard:</b><br>
+The current board will be copied line by line to the clipboard
+ as unicode text with chess figurines separated by spaces.<br>
+<b>Copy text to clipboard:</b><br>
+The content of the text area will be copied to the clipboard.<br>
+<b>Options:</b><br>
+Chose the number of moves the "Mate search" has to search for a
+ checkmate (brute-force).<br>
+Keep in mind: a "mate-in-three" is solvable in a reasonable amount
+ of time, a "mate-in-4" can last very long depending on the number
+ of possible moves! Thats why the number of moves is limited to
+ maximal 6 moves.<br>
+Check the option "First move only" if
+ you want to see the initial move/moves for the solution only.<br>
+<b>Help:</b><br>
+Shows this help.<br>
+<b>About:</b><br>
+Shows information about this app.

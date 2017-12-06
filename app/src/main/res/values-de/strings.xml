@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">MateSolver</string>
+    <string name="action_searchmate">Mattsuche</string>
+    <string name="action_cancel_searchmate">Mattsuche abbrechen</string>
+    <string name="action_clearboard">Brett leeren</string>
+    <string name="action_resetboard">Ausgangsstellung</string>
+    <string name="action_boardtofile">Brett (Bild) in Datei</string>
+    <string name="action_boardtoclipboard">Brett (Text) in Zwischenablage</string>
+    <string name="action_texttoclipboard">Text in Zwischenablage</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="action_help">Hilfe</string>
+    <string name="action_about">Über</string>
+    <string name="about_title">Über</string>
+    <string name="help_title">Hilfe</string>
+    <string name="options_title">Einstellungen</string>
+    <string name="button_mode_matesearch">Wechseln zu Mattsuche</string>
+    <string name="analysis_mode_white">(Analysemodus) - Weiss am Zug</string>
+    <string name="logview_welcome">Willkommen zu MateSolver</string>
+    <string name="option_mate_in_moves">Matt in Zügen</string>
+    <string name="option_first_move_only">Nur ersten Zug</string>
+    <string name="mode_analysis">Analysemodus</string>
+    <string name="mode_mate_search">Mattsuche</string>
+    <string name="white">Weiss</string>
+    <string name="black">Schwarz</string>
+    <string name="to_move">am Zug</string>
+    <string name="switch_to">Wechseln zu</string>
+    <string name="setup_board">Stellung eingeben</string>
+    <string name="check">Schach</string>
+    <string name="mate">Matt</string>
+    <string name="white_mates">Weiss setzt Schwarz matt und gewinnt</string>
+    <string name="black_mates">Schwarz setzt Weiss matt und gewinnt</string>
+    <string name="invalid_position">Ungültige Stellung</string>
+    <string name="search">Mattsuche läuft...</string>
+    <string name="search_cancelled">Mattsuche abgebrochen</string>
+</resources>

@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">MateSolver</string>
+    <string name="action_searchmate">Search mate</string>
+    <string name="action_cancel_searchmate">Cancel mate search</string>
+    <string name="action_clearboard">Clear board</string>
+    <string name="action_resetboard">Reset board</string>
+    <string name="action_boardtofile">Copy board (image) to file</string>
+    <string name="action_boardtoclipboard">Copy board (text) to clipboard</string>
+    <string name="action_texttoclipboard">Copy text to clipboard</string>
+    <string name="action_settings">Options</string>
+    <string name="action_help">Help</string>
+    <string name="action_about">About</string>
+    <string name="about_title">About</string>
+    <string name="help_title">Help</string>
+    <string name="options_title">Options</string>
+    <string name="button_mode_matesearch">Switch to Mate Search</string>
+    <string name="analysis_mode_white">(Analysis mode) - White to move</string>
+    <string name="logview_welcome">Welcome to MateSolver</string>
+    <string name="option_mate_in_moves">Mate in moves</string>
+    <string name="option_first_move_only">First move only</string>
+    <string name="mode_analysis">Analysis mode</string>
+    <string name="mode_mate_search">Mate search</string>
+    <string name="white">White</string>
+    <string name="black">Black</string>
+    <string name="to_move">to move</string>
+    <string name="switch_to">Switch to</string>
+    <string name="setup_board">Setup board</string>
+    <string name="check">Check</string>
+    <string name="mate">Mate</string>
+    <string name="white_mates">White mated black and won the game</string>
+    <string name="black_mates">Black mated white and won the game</string>
+    <string name="invalid_position">Invalid position</string>
+    <string name="search">Search running...</string>
+    <string name="search_cancelled">Search cancelled</string>
+</resources>
