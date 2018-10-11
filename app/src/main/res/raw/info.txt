@@ -1,6 +1,6 @@
 <h2>MateSolver</h2>
-<b>Version 1.1</b><br>
-&#169; 2017-12-04 Lars Streblow<br>
+<b>Version 1.2 (Build 3)</b><br>
+&#169; 2018-10-11 Lars Streblow<br>
 <br>
 streblow.gmxhome.de<br>
 lars.streblow@gmx.de
