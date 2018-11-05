@@ -2,6 +2,8 @@
     <string name="app_name">MateSolver</string>
     <string name="action_searchmate">Mattsuche</string>
     <string name="action_cancel_searchmate">Mattsuche abbrechen</string>
+    <string name="action_analyseposition">Positionsanalyse</string>
+    <string name="action_cancel_analyseposition">Positionsanalyse abbrechen</string>
     <string name="action_clearboard">Brett leeren</string>
     <string name="action_resetboard">Ausgangsstellung</string>
     <string name="action_boardtofile">Brett (Bild) in Datei</string>
@@ -32,4 +34,6 @@
     <string name="invalid_position">Ungültige Stellung</string>
     <string name="search">Mattsuche läuft...</string>
     <string name="search_cancelled">Mattsuche abgebrochen</string>
+    <string name="analysis">Positionsanalyse läuft...</string>
+    <string name="analysis_cancelled">Positionsanalyse abgebrochen</string>
 </resources>

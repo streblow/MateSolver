@@ -2,6 +2,8 @@
     <string name="app_name">MateSolver</string>
     <string name="action_searchmate">Search mate</string>
     <string name="action_cancel_searchmate">Cancel mate search</string>
+    <string name="action_analyseposition">Analyse position</string>
+    <string name="action_cancel_analyseposition">Cancel position analysis</string>
     <string name="action_clearboard">Clear board</string>
     <string name="action_resetboard">Reset board</string>
     <string name="action_boardtofile">Copy board (image) to file</string>
@@ -32,4 +34,6 @@
     <string name="invalid_position">Invalid position</string>
     <string name="search">Search running...</string>
     <string name="search_cancelled">Search cancelled</string>
+    <string name="analysis">Analysis running...</string>
+    <string name="analysis_cancelled">Analysis cancelled</string>
 </resources>

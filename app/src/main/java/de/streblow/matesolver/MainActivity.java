@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Environment;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -34,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
     public final String savedStateFilename = "savedState";
 
-    private DoEvaluationTask evaluationTask = null;
+    private MateSearchTask mateSearchTask = null;
+    private AnalysePositionTask analysePositionTask = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,21 +135,49 @@ public class MainActivity extends AppCompatActivity {
                     boardView.setText(getString(R.string.invalid_position));
                     tvLogView.setText(getString(R.string.invalid_position));
                 } else {
-                    Analyse analyse = new Analyse(boardView.getBoard().getFEN() + " w - - 0 1", mMateInMoves * 2 - 1, Chess.WHITE, mFirstMoveOnly);
+                    MateSearch mateSearch = new MateSearch(boardView.getBoard().getFEN() + " w - - 0 1", mMateInMoves * 2 - 1, Chess.WHITE, mFirstMoveOnly);
                     boardView.setText(getString(R.string.search));
                     tvLogView.setText(getString(R.string.search));
-                    evaluationTask = new DoEvaluationTask(analyse, boardView, tvLogView);
-                    evaluationTask.execute();
+                    mateSearchTask = new MateSearchTask(mateSearch, boardView, tvLogView);
+                    mateSearchTask.execute();
                 }
                 return true;
             case R.id.action_cancel_searchmate:
-                if (evaluationTask == null)
+                if (mateSearchTask == null)
                     return true;
-                if (evaluationTask.getStatus() != AsyncTask.Status.RUNNING)
+                if (mateSearchTask.getStatus() != AsyncTask.Status.RUNNING)
                     return true;
-                evaluationTask.cancel(true);
+                mateSearchTask.cancel(true);
                 boardView.setText(getString(R.string.search_cancelled));
                 tvLogView.setText(getString(R.string.search_cancelled));
+                return true;
+            case R.id.action_analyseposition:
+                if (boardView.getMode() == 1)
+                    return true;
+                boardView.setSquareSelected(false);
+                if (!boardView.getGame().validateGame(boardView.getBoard())) {
+                    boardView.setText(getString(R.string.invalid_position));
+                    tvLogView.setText(getString(R.string.invalid_position));
+                } else {
+                    AnalysePosition analysePosition;
+                    if (!boardView.getGame().getTurn())
+                        analysePosition = new AnalysePosition(boardView.getBoard().getFEN() + " w - - 0 1", mMateInMoves * 2, Chess.WHITE);
+                    else
+                        analysePosition = new AnalysePosition(boardView.getBoard().getFEN() + " b - - 0 1", mMateInMoves * 2, Chess.BLACK);
+                    boardView.setText(getString(R.string.analysis));
+                    tvLogView.setText(getString(R.string.analysis));
+                    analysePositionTask = new AnalysePositionTask(analysePosition, boardView, tvLogView);
+                    analysePositionTask.execute();
+                }
+                return true;
+            case R.id.action_cancel_analyseposition:
+                if (analysePositionTask == null)
+                    return true;
+                if (analysePositionTask.getStatus() != AsyncTask.Status.RUNNING)
+                    return true;
+                analysePositionTask.cancel(true);
+                boardView.setText(getString(R.string.analysis_cancelled));
+                tvLogView.setText(getString(R.string.analysis_cancelled));
                 return true;
             case R.id.action_clearboard:
                 if (boardView.getMode() == 0)

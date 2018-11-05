@@ -1,4 +1,4 @@
-MateSolver can be used to analyse chess positions.
+MateSolver can be used to mateSearch chess positions.
  There are two modes: "Analysis mode" and "Mate search".<br>
 <br>
 <h3>Modes</h3>

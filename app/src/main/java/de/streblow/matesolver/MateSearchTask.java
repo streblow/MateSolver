@@ -1,6 +1,5 @@
 package de.streblow.matesolver;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.TextView;
 
@@ -8,21 +7,21 @@ import android.widget.TextView;
  * Created by streblow on 04.12.2017.
  */
 
-public class DoEvaluationTask extends AsyncTask<Object, Void, String> {
-    private Analyse analyse;
+public class MateSearchTask extends AsyncTask<Object, Void, String> {
+    private MateSearch mateSearch;
     public BoardView boardView;
     public TextView textView;
 
-    public DoEvaluationTask(Analyse analyse, BoardView boardView, TextView textView) {
+    public MateSearchTask(MateSearch mateSearch, BoardView boardView, TextView textView) {
         super();
-        this.analyse = analyse;
+        this.mateSearch = mateSearch;
         this.boardView = boardView;
         this.textView = textView;
     }
 
     @Override
     protected String doInBackground(Object[] objects) {
-        return analyse.evaluatePosition();
+        return mateSearch.doMateSearch();
     }
 
     @Override

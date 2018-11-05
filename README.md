@@ -7,7 +7,7 @@ Deutsch weiter unten!<br>
 A chess app to solve mate puzzles by brute force algorithm.<br>
 Within the app you can save pictures of the board, copy move list to clipboard and copy board as text
 to clipboard to document chess matches or chess problems with other apps of your device.<br>
-The app also offers a mode to analyse positions where only legal moves are accepted. You can use this
+The app also offers a mode to mateSearch positions where only legal moves are accepted. You can use this
 mode for playing out a given position.<br>
 You can build it with AndroidStudio or find the APK in the app folder.<br>
 <br>

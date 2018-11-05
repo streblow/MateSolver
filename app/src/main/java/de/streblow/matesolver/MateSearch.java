@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Analyse {
+public class MateSearch {
 
     private static final int MAX_PLY = 15; // Limit to maximal mate in 8
 
@@ -20,7 +20,7 @@ public class Analyse {
     private static boolean m_FoundSolution;
     private static boolean m_showFirstOnly;
 
-    public Analyse(String fen, int plys, int color, boolean firstmoveonly) {
+    public MateSearch(String fen, int plys, int color, boolean firstmoveonly) {
         m_Position = new Position(fen);
         m_Plys = plys;
         m_Color = color;
@@ -32,7 +32,7 @@ public class Analyse {
         m_showFirstOnly = firstmoveonly;
     }
 
-    public String evaluatePosition() {
+    public String doMateSearch() {
         m_Moves = new String[MAX_PLY];
         m_LastMoves = new String[MAX_PLY];
         for (int i = 0; i < m_Plys; i++)
@@ -42,7 +42,7 @@ public class Analyse {
         try {
             m_FoundSolution = searchMate();
         } catch (IllegalMoveException ex) {
-            Logger.getLogger(Analyse.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MateSearch.class.getName()).log(Level.SEVERE, null, ex);
         }
         if (m_FoundSolution) {
             m_Solution = formatSolution(m_Solution);
