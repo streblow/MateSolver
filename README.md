@@ -9,7 +9,7 @@ Within the app you can save pictures of the board, copy move list to clipboard a
 to clipboard to document chess matches or chess problems with other apps of your device.<br>
 The app also offers a mode to analyse positions where only legal moves are accepted. You can use this
 mode for playing out a given position.<br>
-In this mode you now can let a buildin engine (Kasparov) evaluate a score for the current position.<br>
+In this mode you now can let a built-in engine (Kasparov) evaluate a score for the current position.<br>
 You can build it with AndroidStudio or find the APK in the app folder.<br>
 <br>
 <br>
@@ -26,5 +26,5 @@ Die App bietet Ihnen auch einen Analysemodus, in dem Sie eine Position ausspiele
 Züge erlaubt sind. Nutzen Sie diesen Modus, um eine gegebene Position durchzuspielen.<br>
 Sie können in diesem Modus jetzt auch eine eingebaute Schachengine (Kasparov) den Spielwert der aktuellen Position
 berechnen lassen.<br>
-Sie k&ouml;nnen die App mit AndroidStudio &uuml;bersetzen, oder aber die APK im app-Ordner finden.<br>
+Sie können die App mit AndroidStudio &uuml;bersetzen, oder aber die APK im app-Ordner finden.<br>
 
