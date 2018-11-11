@@ -4,6 +4,8 @@
     <string name="action_cancel_searchmate">Cancel mate search</string>
     <string name="action_analyseposition">Analyse position</string>
     <string name="action_cancel_analyseposition">Cancel position analysis</string>
+    <string name="action_switch_side">Switch side</string>
+    <string name="action_flipboard">Flip board</string>
     <string name="action_clearboard">Clear board</string>
     <string name="action_resetboard">Reset board</string>
     <string name="action_boardtofile">Copy board (image) to file</string>

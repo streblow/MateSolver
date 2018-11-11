@@ -39,6 +39,7 @@ public class BoardView extends View {
     private int mSelectedColumn;
     private String mText;
     private boolean mMateInAnalyseMode;
+    public boolean mBoardFlipped;
 
     public BoardView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -61,39 +62,69 @@ public class BoardView extends View {
         mSelectedColumn = -1;
         mText = "";
         mMateInAnalyseMode = false;
+        mBoardFlipped = false;
+    }
+
+    public void flipBoard() {
+        mBoardFlipped = !mBoardFlipped;
+        for(int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if(getBoard().hasPiece(i, j)) {
+                    if (mBoardFlipped)
+                        mBoard.getSquare(i, j).setLocationXY(7 - i, 7 - j);
+                    else
+                        mBoard.getSquare(i, j).setLocationXY(i, j);
+                }
+            }
+        }
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         Point touchPoint = new Point((int)event.getX(), (int)event.getY());
         if (!mSquareSelected) {
-            if (mMode == 0) {
+            if (mMode == 0) { // Analysis Mode
                 boolean valid = mGame.validateGame(mBoard);
                 if (!mGame.getVictory() & valid) {
-                    for (int i = 0; i <8 ; i++) {
+                    for (int i = 0; i < 8 ; i++) {
                         for (int j = 0; j < 8; j++) {
                             if (mBoard.hasPiece(i, j)) {
                                 if (mBoard.getSquare(i, j).contains(touchPoint)) {
                                     if (mBoard.getSquare(i, j).getColor() == mGame.getTurn()) {
                                         mBoard.getSquare(i, j).setSelected(true);
                                         mSquareSelected = true;
-                                        mSelectedRow = j;
-                                        mSelectedColumn = i;
+                                        if (!mBoardFlipped) {
+                                            mSelectedRow = j;
+                                            mSelectedColumn = i;
+                                        } else {
+                                            mSelectedRow = 7 - j;
+                                            mSelectedColumn = 7 - i;
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
-            } else {
+            } else { // Search Mate Mode
                 for (int i = 0; i < 10; i++) {
                     for (int j = 0; j < 8; j++) {
                         if (mBoard.hasPiece(i, j)) {
                             if (mBoard.getSquare(i, j).contains(touchPoint)) {
                                 mBoard.getSquare(i, j).setSelected(true);
                                 mSquareSelected = true;
-                                mSelectedRow = j;
-                                mSelectedColumn = i;
+                                if ( i < 8) {
+                                    if (!mBoardFlipped) {
+                                        mSelectedRow = j;
+                                        mSelectedColumn = i;
+                                    } else {
+                                        mSelectedRow = 7 - j;
+                                        mSelectedColumn = 7 - i;
+                                    }
+                                } else {
+                                    mSelectedRow = j;
+                                    mSelectedColumn = i;
+                                }
                             }
                         }
                     }
@@ -123,7 +154,7 @@ public class BoardView extends View {
                     }
                 }
             }
-            if (mMode != 0) {
+            if (mMode != 0) { // Search Mate Mode
                 for (int i = 8; i < 10; i++) {
                     for (int j = 0; j < 6; j++) {
                         if (mBoard.hasPiece(i, j)) {
@@ -141,29 +172,42 @@ public class BoardView extends View {
                 if (mMode == 0) {  // Analysis Mode: do legal moves
                     int newX = touchPoint.x / mSquareSize;
                     int newY = touchPoint.y / mSquareSize;
+                    Point flippedTouchPoint = touchPoint;
+                    if ((newX < 8) && mBoardFlipped) {
+                        newX = 7 - newX;
+                        newY = 7 - newY;
+                        flippedTouchPoint.x = newX * mSquareSize;
+                        flippedTouchPoint.y = newY * mSquareSize;
+                    }
                     // Check if move would yield to check for current side
                     boolean valid = true;
                     if (newX == oldX & newY == oldY)
                         valid = false;
                     else
                         valid = !mGame.checkCheck(currentBoard, oldX, oldY, newX, newY, mBoard.hasPiece(newX, newY));
-                    if (selectedPiece.checkLegalMove(touchPoint, mBoard) && valid) {
+                    if (selectedPiece.checkLegalMove(flippedTouchPoint, mBoard) && valid) {
                         // Check for castling
                         if (selectedPiece.getType().equals("King") && (Math.abs(newX - oldX) == 2)) {
                             if (selectedPiece.getColor() == false) { //piece is white
                                 mBoard.clearSquare(oldX, oldY);
                                 mBoard.setSquare(newX, newY, selectedPiece);
                                 selectedPiece.setLocation(newX, newY);
+                                if (mBoardFlipped)
+                                    selectedPiece.setLocationXY(7 - newX, 7 - newY);
                                 if (oldX < newX) { //short castling
                                     Piece rook = mBoard.getSquare(7, 7);
                                     mBoard.setSquare(5, 7, rook);
                                     rook.setLocation(5, 7);
+                                    if (mBoardFlipped)
+                                        rook.setLocationXY(2, 0);
                                     mBoard.clearSquare(7, 7);
                                     mText = getText() + mMove + ". 0-0";
                                 } else { //long castling
                                     Piece rook = mBoard.getSquare(0, 7);
                                     mBoard.setSquare(3, 7, rook);
                                     rook.setLocation(3, 7);
+                                    if (mBoardFlipped)
+                                        rook.setLocationXY(4, 7);
                                     mBoard.clearSquare(0, 7);
                                     mText = getText() + mMove + ". 0-0-0";
                                 }
@@ -175,12 +219,16 @@ public class BoardView extends View {
                                     Piece rook = mBoard.getSquare(7, 0);
                                     mBoard.setSquare(5, 0, rook);
                                     rook.setLocation(5, 0);
+                                    if (mBoardFlipped)
+                                        rook.setLocationXY(2, 7);
                                     mBoard.clearSquare(7, 0);
                                     mText = getText() + " 0-0";
                                 } else { //long castling
                                     Piece rook = mBoard.getSquare(0, 0);
                                     mBoard.setSquare(3, 0, rook);
                                     rook.setLocation(3, 0);
+                                    if (mBoardFlipped)
+                                        rook.setLocationXY(4, 7);
                                     mBoard.clearSquare(0, 0);
                                     mText = getText() + " 0-0-0";
                                 }
@@ -198,6 +246,8 @@ public class BoardView extends View {
                             mBoard.clearSquare(oldX, oldY);
                             mBoard.setSquare(newX, newY, selectedPiece);
                             selectedPiece.setLocation(newX, newY);
+                            if (mBoardFlipped)
+                                selectedPiece.setLocationXY(7 - newX, 7 - newY);
                             String figurine = "";
                             if (!selectedPiece.getFENType().toUpperCase().equals("P"))
                                 figurine = selectedPiece.getFENType().toUpperCase();
@@ -238,6 +288,8 @@ public class BoardView extends View {
                     } else {
                         //snap back to original square
                         selectedPiece.setLocation(oldX, oldY);
+                        if (mBoardFlipped)
+                            selectedPiece.setLocationXY(7 - oldX, 7 - oldY);
                         if (oldX != newX | oldY != newY) {
                             invalidate();
                         }
@@ -245,6 +297,10 @@ public class BoardView extends View {
                 } else { // Search Mate: setup board
                     int newX = touchPoint.x / mSquareSize;
                     int newY = touchPoint.y / mSquareSize;
+                    if ((newX < 8) && mBoardFlipped) {
+                        newX = 7 - newX;
+                        newY = 7 - newY;
+                    }
                     mBoard.clearSquare(oldX, oldY);
                     if (oldX > 7) //new piece taken from new piece area, replace it
                         switch (oldY) {
@@ -266,6 +322,8 @@ public class BoardView extends View {
                     if (newX < 8 & newY < 8) { //destination on the board, move selected piece
                         mBoard.setSquare(newX, newY, selectedPiece);
                         selectedPiece.setLocation(newX, newY);
+                        if (mBoardFlipped)
+                            selectedPiece.setLocationXY(7 - newX, 7 - newY);
                     }
                 }
                 selectedPiece.setSelected(false);
@@ -332,7 +390,6 @@ public class BoardView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
         boolean isBlack = false;
         // Draw board and new piece area
         mPaint.setStyle(Paint.Style.FILL);
@@ -496,6 +553,7 @@ public class BoardView extends View {
             dos.writeInt(mSelectedColumn);
             dos.writeUTF(mText);
             dos.writeBoolean(isMateInAnalyseMode());
+            dos.writeBoolean(mBoardFlipped);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -513,6 +571,7 @@ public class BoardView extends View {
             mSelectedRow = dis.readInt();
             mText = dis.readUTF();
             mMateInAnalyseMode = dis.readBoolean();
+            mBoardFlipped = dis.readBoolean();
             invalidate();
         } catch (IOException e) {
             e.printStackTrace();
@@ -530,6 +589,7 @@ public class BoardView extends View {
         savedInstanceState.putInt("SELECTEDCOLUMN", mSelectedColumn);
         savedInstanceState.putString("TEXT", mText);
         savedInstanceState.putBoolean("MATEINANALYSEMODE", isMateInAnalyseMode());
+        savedInstanceState.putBoolean("BOARDFLIPPED", mBoardFlipped);
     }
 
     public void restoreState(Bundle savedInstanceState) {
@@ -543,6 +603,7 @@ public class BoardView extends View {
         mSelectedColumn = savedInstanceState.getInt("SELECTEDCOLUMN");
         mText = savedInstanceState.getString("TEXT");
         mMateInAnalyseMode = savedInstanceState.getBoolean("MATEINANALYSEMODE");
+        mBoardFlipped = savedInstanceState.getBoolean("BOARDFLIPPED");
     }
 
     @Override
@@ -559,6 +620,7 @@ public class BoardView extends View {
         ss.mSelectedColumn = mSelectedColumn;
         ss.mText = mText;
         ss.mMateInAnalyseMode = isMateInAnalyseMode();
+        ss.mBoardFlipped = mBoardFlipped;
         return ss;
     }
 
@@ -576,6 +638,7 @@ public class BoardView extends View {
         mSelectedColumn = ss.mSelectedColumn;
         mText = ss.mText;
         mMateInAnalyseMode = ss.mMateInAnalyseMode;
+        mBoardFlipped = ss.mBoardFlipped;
     }
 
     public boolean isMateInAnalyseMode() {

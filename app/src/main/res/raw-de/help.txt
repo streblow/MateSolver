@@ -1,72 +1,42 @@
-MateSolver kann dazu genutzt werden, Schachstellungen zu analysieren.
- Es gibt zwei Modi: "Analysemodus" und "Mattsuche".
-<br>
+MateSolver kann dazu genutzt werden, Schachstellungen zu analysieren. Es gibt zwei Modi:<br>
+"Analysemodus" und "Mattsuche".<br>
 <br>
 <h3>Modi</h3>
-Im "Analysemodus" können Züge basierend auf einer regulären
- Stellung gespielt werden, wobei Weiß immer zuerst ziehen darf.<br>
-Im Modus "Mattsuche" kann eine reguläre Stellung aufgebaut werden,
- um die App nach einem Schachmatt in einer vorgegebenen Anzahl
- von Zügen suchen zu lassen, wobei auch hier Weiß immer zuerst
- ziehen darf (z. B. Weiß setzt in 2 Zügen matt).<br>
-Das Wechseln zwischen den zwei Modi behält die Stellung bei.
- Beim Wechseln in den "Analysemodus", wird das Zugrecht auf Weiß
- gesetzt und der Zugzähler auf 1 zurückgesetzt. Eine eventuell
- notierte Mattlösung im Textbereich wird gelöscht. Beim Wechseln
- in den Modus "Mattsuche", werden die im Textbereich notierten
- Züge aus dem "Analysemodus" gelöscht.<br>
+Im "Analysemodus" können Züge basierend auf einer regulären Stellung gespielt werden, wobei Weiß zunächst immer zuerst ziehen darf. Das Zugrecht kann in diesem Modus gewechselt werden. Es kann auch der Wert der aktuellen Position von der App berechnet werden.<br>
+Im Modus "Mattsuche" kann eine reguläre Stellung aufgebaut werden, um die App nach einem Schachmatt in einer vorgegebenen Anzahl von Zügen suchen zu lassen, wobei hier die Mattsuche immer aus der Sicht von Weiß erfolgt. (z. B. Weiß setzt in 2 Zügen matt).<br>
+Das Wechseln zwischen den zwei Modi behält die Stellung bei. Beim Wechseln in den "Analysemodus", wird das Zugrecht auf Weiß gesetzt und der Zugzähler auf 1 zurückgesetzt. Eine berechnete Mattlösung im Textbereich wird gelöscht. Beim Wechseln in den Modus "Mattsuche", werden die im Textbereich notierten Züge aus dem "Analysemodus" gelöscht.<br>
 <br>
 <h3>Stellungseingabe/Ziehen</h3>
-Soll eine reguläre Stellung aufgebaut werden, muss sich MateSolver im
- Modus "Mattsuche" befinden. Im "Analysemodus" kann das Schachbrett nur
- in die Ausgangsstellung zurückgesetzt werden (die natürlich
- regulär ist). Wenn in den "Analysemodus" gewechselt wird und keine
- reguläre Stellung vorliegt, erscheint eine Meldung im Textbereich.
- Es ist dann nicht möglich zu ziehen. Das gleiche passiert, wenn
- im Modus "Mattsuche" eine Mattsuche basierend auf einer irregulären
- Stellung angestoßen wird.<br>
-Die Stellungseingabe oder das Ziehen erfolgt durch Antippen
- des Feldes von dem eine Figur gezogen werden soll (es wird als
- ausgewählt gekennzeichnet) und durch anschließendes Antippen des
- Feldes auf das gezogen werden soll. Im Modus "Mattsuche" können
- Figuren aus dem Figurenbereich rechts vom Schachbrett auf das Schachbrett
- gezogen werden und Figuren vom Schachbrett dorthin entfernt werden (egal,
- welche Figur ausgewählt war). Wird beim zweiten Antippen ein Feld mit
- einer vorhandenen Figur angetippt, wird die Figur ersetzt. Wird
- ein ausgewähltes Feld angetippt oder ein Feld, das keinem regulären
- Zug entspräche, wird die Auswahl zurückgesetzt.<br>
+Soll eine reguläre Stellung aufgebaut werden, muss sich MateSolver im Modus "Mattsuche" befinden. Im "Analysemodus" kann das Schachbrett nur in die Ausgangsstellung zurückgesetzt werden (die natürlich regulär ist). Wenn in den "Analysemodus" gewechselt wird und keine reguläre Stellung vorliegt, erscheint eine Meldung im Textbereich. Es ist dann nicht möglich zu ziehen. Gleiches passiert, wenn im Modus "Mattsuche" eine Mattsuche basierend auf einer irregulären Stellung angestoßen wird.<br>
+Die Stellungseingabe oder das Ziehen erfolgt durch Antippen des Feldes von dem eine Figur gezogen werden soll (es wird als ausgewählt gekennzeichnet) und durch anschließendes Antippen des Feldes auf das gezogen werden soll. Im Modus "Mattsuche" können Figuren aus dem Figurenbereich rechts vom Schachbrett auf das Schachbrett gezogen werden und Figuren vom Schachbrett dorthin entfernt werden (egal, welche Figur ausgewählt war). Wird beim zweiten Antippen ein Feld mit einer vorhandenen Figur angetippt, wird die Figur ersetzt. Wird ein ausgewähltes Feld angetippt oder ein Feld, das keinem regulären Zug entspräche, wird die Auswahl zurückgesetzt.<br>
 <br>
 <h3>Das Menü der App</h3>
-<b>Mattsuche ("Mattsuche"):</b><br>
-Die App sucht nach einem Schachmatt in einer vorgegebenen Anzahl
- an Zügen (aus der Sicht von Weiß). Die Anzahl der Züge kann im
- Menüpunkt "Einstellungen" festgelegt werden.<br>
-<b>Mattsuche abbrechen ("Mattsuche"):</b><br>
+<b>Mattsuche (Mattsuche):</b><br>
+Die App sucht nach einem Schachmatt in einer vorgegebenen Anzahl an Zügen (aus der Sicht von Weiß). Die Anzahl der Züge kann im Menüpunkt "Einstellungen" festgelegt werden.<br>
+<b>Mattsuche abbrechen (Mattsuche):</b><br>
 Eine laufende Mattsuche wird abgebrochen.<br>
+<b>Positionsanalyse (Analysemodus):</b><br>
+Die App berechnet den Wert der aktuellen Position. Dabei wird ein Vorteil für Weiß positiv und ein Vorteil von Schwarz negativ bewertet. Die Anzahl der Züge kann im Menüpunkt "Einstellungen" festgelegt werden.<br>
+<b>Positionsanalyse abbrechen (Analysemodus):</b><br>
+Eine laufende Positionsanalyse wird abgebrochen.<br>
+<b>Zugrecht wechseln (Analysemodus):</b><br>
+Wechseln des Zugrechts. Es kann eine irreluläre Position entstehen.<br>
+<b>Brett drehen:</b><br>
+Das Brett wird gedreht.<br>
 <b>Brett leeren ("Mattsuche"):</b><br>
 Alle Figuren werden vom Schachbrett entfernt.<br>
 <b>Ausgangsstellung:</b><br>
-Die Ausgangsstellung wird aufgebaut. Der Textbereich wird im
- "Analysemodus" gelöscht.<br>
+Die Ausgangsstellung wird aufgebaut. Der Textbereich wird im "Analysemodus" gelöscht.<br>
 <b>Brett (Bild) in Datei:</b><br>
-Das aktuelle Schachbrett wird in eine PNG-Datei exportiert und in
- eine Datei unter "sdcard"/Android/data/de.streblow.matesolver/Files/MateSolveryyyyMMdd_HHmm.png
- gespeichert.<br>
+Das aktuelle Schachbrett wird in eine PNG-Datei exportiert und in eine Datei unter "sdcard"/Android/data/de.streblow.matesolver/Files/MateSolveryyyyMMdd_HHmm.png gespeichert.<br>
 <b>Brett (Text) in Zwischenablage:</b><br>
-Das aktuelle Schachbrett wird zeilenweise als Unicode-Text in die
- Zwischenablage kopiert, wobei die Figurinen durch Leerzeichen getrennt
- werden.<br>
+Das aktuelle Schachbrett wird zeilenweise als Unicode-Text in die Zwischenablage kopiert, wobei die Figurinen durch Leerzeichen getrennt werden.<br>
 <b>Text in Zwischenablage:</b><br>
 Der Inhalt des Textbereichs wird in die Zwischenablage kopiert.<br>
 <b>Einstellungen:</b><br>
-Es kann die Anzahl der Züge, die die "Mattsuche" für eine Mattsuche
- durchsuchen soll (Brute-Force-Methode), eingestellt werden.<br>
-Hinweis: Ein Dreizüger kann relativ flott gelöst werden, ein
- Vierzüger kann dagegen eine Weile dauern, je nachdem wieviele mögliche
- Züge es gibt! Daher können nur maximal 6 Züge für die Suchtiefe
- eingestellt werden.<br>
-Die Option "Nur ersten Zug" kann ausgewählt werden, wenn
- nur der erste Zug/die ersten Züge von Weiß angezeigt werden sollen.<br>
+Es kann die Anzahl der Züge, die die "Mattsuche" für eine Mattsuche durchsuchen soll (Brute-Force-Methode), eingestellt werden.<br>
+Hinweis: Ein Dreizüger kann relativ flott gelöst werden, ein Vierzüger kann dagegen eine Weile dauern, je nachdem wieviele mögliche Züge es gibt! Daher können nur maximal 6 Züge für die Suchtiefe eingestellt werden.<br>
+Die Option "Nur ersten Zug" kann ausgewählt werden, wenn nur der erste Zug/die ersten Züge von Weiß angezeigt werden sollen.<br>
 <b>Hilfe:</b><br>
 Diese Hilfe wird angezeigt.<br>
 <b>Über:</b><br>

@@ -27,8 +27,13 @@ public class AnalysePositionTask extends AsyncTask<Object, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
-        boardView.setText(result);
-        textView.setText(result);
+        if (boardView.getGame().getTurn()) { // black
+            boardView.setText(result + "\n1. ...");
+            textView.setText(result + "\n1. ...");
+        } else {
+            boardView.setText(result + "\n");
+            textView.setText(result + "\n");
+        }
     }
 
 }

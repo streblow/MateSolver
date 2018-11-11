@@ -4,6 +4,8 @@
     <string name="action_cancel_searchmate">Mattsuche abbrechen</string>
     <string name="action_analyseposition">Positionsanalyse</string>
     <string name="action_cancel_analyseposition">Positionsanalyse abbrechen</string>
+    <string name="action_switch_side">Zugrecht wechseln</string>
+    <string name="action_flipboard">Brett drehen</string>
     <string name="action_clearboard">Brett leeren</string>
     <string name="action_resetboard">Ausgangsstellung</string>
     <string name="action_boardtofile">Brett (Bild) in Datei</string>

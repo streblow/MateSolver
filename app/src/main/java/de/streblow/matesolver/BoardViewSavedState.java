@@ -16,6 +16,7 @@ public class BoardViewSavedState extends View.BaseSavedState {
     public int mSelectedColumn;
     public String mText;
     public boolean mMateInAnalyseMode;
+    public boolean mBoardFlipped;
 
     BoardViewSavedState(Parcelable superState) {
         super(superState);
@@ -36,6 +37,7 @@ public class BoardViewSavedState extends View.BaseSavedState {
         mSelectedColumn = in.readInt();
         mText = in.readString();
         mMateInAnalyseMode = (in.readInt() == 0) ? false : true;
+        mBoardFlipped = (in.readInt() == 0) ? false : true;
     }
 
     @Override
@@ -55,6 +57,7 @@ public class BoardViewSavedState extends View.BaseSavedState {
         out.writeInt(mSelectedColumn);
         out.writeString(mText);
         out.writeInt((mMateInAnalyseMode) ? -1 : 0);
+        out.writeInt((mBoardFlipped) ? -1 : 0);
     }
 
     public static final Parcelable.Creator<BoardViewSavedState> CREATOR

@@ -155,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
                 if (boardView.getMode() == 1)
                     return true;
                 boardView.setSquareSelected(false);
+                boardView.setMove(1);
                 if (!boardView.getGame().validateGame(boardView.getBoard())) {
                     boardView.setText(getString(R.string.invalid_position));
                     tvLogView.setText(getString(R.string.invalid_position));
@@ -179,6 +180,27 @@ public class MainActivity extends AppCompatActivity {
                 boardView.setText(getString(R.string.analysis_cancelled));
                 tvLogView.setText(getString(R.string.analysis_cancelled));
                 return true;
+            case R.id.action_switch_side:
+                if (boardView.getMode() == 1)
+                    return true;
+                boardView.setSquareSelected(false);
+                boardView.setMove(1);
+                String turn = boardView.getGame().changeTurn() + " " + getString(R.string.to_move);
+                tvLogLabel.setText("(" + getString(R.string.mode_analysis) + ") - " + turn);
+                if (!boardView.getGame().validateGame(boardView.getBoard())) {
+                    boardView.setText(getString(R.string.invalid_position));
+                    tvLogView.setText(getString(R.string.invalid_position));
+                } else {
+                    if (boardView.getGame().getTurn()) { // black
+                        boardView.setText("\n1. ...");
+                        tvLogView.setText("\n1. ...");
+                    }
+                }
+                return true;
+            case R.id.action_flipboard:
+                boardView.flipBoard();
+                boardView.invalidate();
+                return true;
             case R.id.action_clearboard:
                 if (boardView.getMode() == 0)
                     return true;
@@ -191,6 +213,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_resetboard:
                 boardView.setSquareSelected(false);
                 boardView.getBoard().resetBoard();
+                if (boardView.mBoardFlipped) {
+                    boardView.flipBoard();
+                    boardView.mBoardFlipped = !boardView.mBoardFlipped;
+                }
                 boardView.setText("");
                 tvLogView.setText("");
                 if (boardView.getMode() == 0) {

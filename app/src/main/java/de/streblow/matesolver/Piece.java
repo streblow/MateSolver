@@ -111,7 +111,7 @@ public abstract class Piece {
 
     /**
      * The setLocation(int row, int col) takes a row and column from the board as parameters,
-     * sets x and y to those multiplied by 62, and sets the squareOn point to that point.
+     * sets x and y to those multiplied by size, and sets the squareOn point to that point.
      *
      * Used to set a piece on a given square
      * @param row
@@ -122,6 +122,11 @@ public abstract class Piece {
         y  = col * getSize();
         squareOn.set(row, col);
         return true;
+    }
+
+    public void setLocationXY(int row, int col) {
+        x = row * getSize();
+        y  = col * getSize();
     }
 
     public boolean getColor() {
