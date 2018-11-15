@@ -14,8 +14,8 @@ android {
         applicationId "de.streblow.matesolver"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 5
-        versionName '2.1'
+        versionCode 6
+        versionName '2.2'
     }
     buildTypes {
         release {
@@ -32,5 +32,4 @@ dependencies {
     androidTestImplementation 'junit:junit:4.12'
     implementation 'com.android.support:appcompat-v7:23.4.0'
     compileOnly files('libs/Chesspresso.jar')
-    implementation files('libs/Kasparov.jar')
 }

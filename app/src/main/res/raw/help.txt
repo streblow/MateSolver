@@ -15,11 +15,11 @@ Setting up the board or moving is done by tapping the square you want to move fr
 The app will search for a checkmate in a given number of moves (white is considered moving first). The number of moves can be set up in menu item Options.<br>
 <b>Cancel mate search ("Mate search"):</b><br>
 Cancel a running mate search.<br>
-<b>Analyse position (Analysis mode):</b><br>
+<b>Analyse position ("Analysis mode"):</b><br>
 The app will evaluate the score of the current position. A positive value will mark an advantage for white and a negative value an advantage for black. The number of moves can be set up in menu item Options.<br>
-<b>Cancel analyse position (Analysis mode):</b><br>
+<b>Cancel analyse position ("Analysis mode"):</b><br>
 Cancel a running position analysis.<br>
-<b>Switch side (Analysis mode):</b><br>
+<b>Switch side ("Analysis mode"):</b><br>
 Switch side (side to move). An illegal position may occur.<br>
 <b>Flip board:</b><br>
 The board will be flipped.<br>
@@ -34,9 +34,9 @@ The current board will be copied line by line to the clipboard as unicode text w
 <b>Copy text to clipboard:</b><br>
 The content of the text area will be copied to the clipboard.<br>
 <b>Options:</b><br>
-Chose the number of moves the "Mate search" has to search for a checkmate (brute-force).<br>
+Chose the number of moves the "Mate search" has to search for a checkmate (brute-force). The position analysis will also evaluate to this depth.<br>
 Keep in mind: a "mate-in-three" is solvable in a reasonable amount of time, a "mate-in-4" can last very long depending on the number of possible moves! Thats why the number of moves is limited to maximal 6 moves.<br>
-Check the option "First move only" if you want to see the initial move/moves for the solution only.<br>
+Check the option "First move only" if you want to see the initial move/moves for the solution of a mate search only.<br>
 <b>Help:</b><br>
 Shows this help.<br>
 <b>About:</b><br>

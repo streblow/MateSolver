@@ -61,6 +61,9 @@ public class Board {
                             board[i][j] = new Pawn(context, i, j, size, true);
                         }
                     }
+                    board[i][j].setX(b.getSquare(i, j).getX());
+                    board[i][j].setY(b.getSquare(i, j).getY());
+                    board[i][j].setSelected(b.getSquare(i, j).isSelected());
                 }
             }
         }
@@ -75,6 +78,9 @@ public class Board {
                 board[i][j] = null;
             }
         }
+        float resizeFactor = 1.0f;
+        if (b.getSize() != size)
+            resizeFactor = (float)size / (float)b.getSize();
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 8; j++) {
                 if (b.hasPiece(i, j)) {
@@ -107,6 +113,9 @@ public class Board {
                             board[i][j] = new Pawn(context, i, j, size, true);
                         }
                     }
+                    board[i][j].setX((int)((float)(b.getSquare(i, j).getX()) * resizeFactor));
+                    board[i][j].setY((int)((float)(b.getSquare(i, j).getY()) * resizeFactor));
+                    board[i][j].setSelected(b.getSquare(i, j).isSelected());
                 }
             }
         }

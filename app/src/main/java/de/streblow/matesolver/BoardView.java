@@ -77,6 +77,12 @@ public class BoardView extends View {
                 }
             }
         }
+        if (mSquareSelected) {
+            if (mSelectedColumn < 8) {
+                mSelectedRow = 7 - mSelectedRow;
+                mSelectedColumn = 7 - mSelectedColumn;
+            }
+        }
     }
 
     @Override
@@ -416,12 +422,27 @@ public class BoardView extends View {
         }
         canvas.drawLine(0, 0, 10 * mSquareSize - 1, 0, mPaint);
         canvas.drawLine(0, 0, 0, 8 * mSquareSize - 1, mPaint);
+        // Draw column row labels
+        String columns = "ABCDEFGH";
+        String rows = "12345678";
+        if (mBoardFlipped) {
+            columns = "HGFEDCBA";
+            rows = "87654321";
+        }
+        Rect rect = new Rect();
+        mPaint.setColor(Color.rgb(40, 40, 63));
+        mPaint.setTextSize(0.25f * (float)mSquareSize);
+        mPaint.getTextBounds("W", 0, 1, rect);
+        for(int i = 0; i < 8; i++) {
+            canvas.drawText(columns.substring(i, i + 1), (float)(i + 1) * (float)mSquareSize - 0.05f * (float)mSquareSize - (float)rect.width(), 8.0f * (float)mSquareSize - 0.05f * (float)mSquareSize, mPaint);
+            canvas.drawText(rows.substring(i, i + 1), 0.05f * (float)mSquareSize, (float)(7 - i) * (float)mSquareSize + 0.05f * (float)mSquareSize + (float)rect.height(), mPaint);
+        }
         // Draw pieces
         mPaint.setAntiAlias(true);
         for(int i = 0; i < 10; i++) {
             for (int j = 0; j < 8; j++) {
-                if(getBoard().hasPiece(i, j)) {
-                    getBoard().getSquare(i, j).draw(canvas, mPaint);
+                if(mBoard.hasPiece(i, j)) {
+                    mBoard.getSquare(i, j).draw(canvas, mPaint);
                 }
             }
         }
@@ -467,8 +488,8 @@ public class BoardView extends View {
         paint.setAntiAlias(true);
         for(int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                if(getBoard().hasPiece(i, j)) {
-                    getBoard().getSquare(i, j).draw(canvas, paint);
+                if(mBoard.hasPiece(i, j)) {
+                    mBoard.getSquare(i, j).draw(canvas, paint);
                 }
             }
         }
@@ -568,11 +589,27 @@ public class BoardView extends View {
             mMove = dis.readInt();
             mSquareSelected = dis.readBoolean();
             mSelectedRow = dis.readInt();
-            mSelectedRow = dis.readInt();
+            mSelectedColumn = dis.readInt();
             mText = dis.readUTF();
             mMateInAnalyseMode = dis.readBoolean();
             mBoardFlipped = dis.readBoolean();
-            invalidate();
+            if (mBoardFlipped) {
+                for(int i = 0; i < 8; i++) {
+                    for (int j = 0; j < 8; j++) {
+                        if(mBoard.hasPiece(i, j))
+                            mBoard.getSquare(i, j).setLocationXY(7 - i, 7 - j);
+                    }
+                }
+                if (mSquareSelected) {
+                    if (mSelectedColumn < 8)
+                        mBoard.getSquare(7 - mSelectedColumn, 7 - mSelectedRow).setSelected(true);
+                    else
+                        mBoard.getSquare(mSelectedColumn, mSelectedRow).setSelected(true);
+                }
+            } else
+            if (mSquareSelected) {
+                mBoard.getSquare(mSelectedColumn, mSelectedRow).setSelected(true);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -604,6 +641,23 @@ public class BoardView extends View {
         mText = savedInstanceState.getString("TEXT");
         mMateInAnalyseMode = savedInstanceState.getBoolean("MATEINANALYSEMODE");
         mBoardFlipped = savedInstanceState.getBoolean("BOARDFLIPPED");
+        if (mBoardFlipped) {
+            for(int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    if(mBoard.hasPiece(i, j))
+                        mBoard.getSquare(i, j).setLocationXY(7 - i, 7 - j);
+                }
+            }
+            if (mSquareSelected) {
+                if (mSelectedColumn < 8)
+                    mBoard.getSquare(7 - mSelectedColumn, 7 - mSelectedRow).setSelected(true);
+                else
+                    mBoard.getSquare(mSelectedColumn, mSelectedRow).setSelected(true);
+            }
+        } else
+        if (mSquareSelected) {
+            mBoard.getSquare(mSelectedColumn, mSelectedRow).setSelected(true);
+        }
     }
 
     @Override

@@ -77,12 +77,20 @@ public abstract class Piece {
         return x;
     }
 
+    public void setX(int x) {
+        this.x = x;
+    }
+
     /**
      * the getY() method returns the y-value of the location of the piece.
      * @return int, the y value of the location of the piece
      */
     public int getY() {
         return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 
     /**

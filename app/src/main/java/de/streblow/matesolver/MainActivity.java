@@ -135,10 +135,10 @@ public class MainActivity extends AppCompatActivity {
                     boardView.setText(getString(R.string.invalid_position));
                     tvLogView.setText(getString(R.string.invalid_position));
                 } else {
-                    MateSearch mateSearch = new MateSearch(boardView.getBoard().getFEN() + " w - - 0 1", mMateInMoves * 2 - 1, Chess.WHITE, mFirstMoveOnly);
                     boardView.setText(getString(R.string.search));
                     tvLogView.setText(getString(R.string.search));
-                    mateSearchTask = new MateSearchTask(mateSearch, boardView, tvLogView);
+                    mateSearchTask = new MateSearchTask(boardView, tvLogView,
+                            boardView.getBoard().getFEN() + " w - - 0 1", mMateInMoves * 2 - 1, Chess.WHITE, mFirstMoveOnly);
                     mateSearchTask.execute();
                 }
                 return true;
@@ -160,14 +160,14 @@ public class MainActivity extends AppCompatActivity {
                     boardView.setText(getString(R.string.invalid_position));
                     tvLogView.setText(getString(R.string.invalid_position));
                 } else {
-                    AnalysePosition analysePosition;
-                    if (!boardView.getGame().getTurn())
-                        analysePosition = new AnalysePosition(boardView.getBoard().getFEN() + " w - - 0 1", mMateInMoves * 2, Chess.WHITE);
-                    else
-                        analysePosition = new AnalysePosition(boardView.getBoard().getFEN() + " b - - 0 1", mMateInMoves * 2, Chess.BLACK);
                     boardView.setText(getString(R.string.analysis));
                     tvLogView.setText(getString(R.string.analysis));
-                    analysePositionTask = new AnalysePositionTask(analysePosition, boardView, tvLogView);
+                    if (!boardView.getGame().getTurn())
+                        analysePositionTask = new AnalysePositionTask(boardView, tvLogView,
+                                boardView.getBoard().getFEN() + " w - - 0 1", mMateInMoves * 2, Chess.WHITE);
+                    else
+                        analysePositionTask = new AnalysePositionTask(boardView, tvLogView,
+                                boardView.getBoard().getFEN() + " b - - 0 1", mMateInMoves * 2, Chess.BLACK);
                     analysePositionTask.execute();
                 }
                 return true;
@@ -322,6 +322,7 @@ public class MainActivity extends AppCompatActivity {
             mMateInMoves = dis.readInt();
             mFirstMoveOnly = dis.readBoolean();
             boardView.restoreState(dis);
+            boardView.invalidate();
             btnMode.setText(getString(R.string.switch_to) + " " + boardView.MODES[(~boardView.getMode() & 1)]);
             tvLogView.setText(boardView.getText());
             if (boardView.getMode() == 0) {
