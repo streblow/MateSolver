@@ -16,6 +16,8 @@ public class Board {
     public Board(Context context, int size) {
         this.context = context;
         this.size = size;
+        if (size == 0)
+            this.size = 10; // prevent initialisation problems
         board = new Piece[10][8];
         resetBoard();
     }
@@ -72,6 +74,8 @@ public class Board {
     public Board(Context context, int size, Board b) {
         this.context = context;
         this.size = size;
+        if (size == 0)
+            this.size = 10; // prevent initialisation problems
         board = new Piece[10][8];
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 8; j++) {
