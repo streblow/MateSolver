@@ -165,12 +165,12 @@ public class AnalysePositionTask extends AsyncTask<Object, String, String> {
                 break;
             }
 
+            pvMoves = PVTable.getPVLine(boardStructure, currentDepth);
+
             bestMove = boardStructure.getPVArrayEntry(0);
             analysePositionResult = String.format("score %.2f depth %d nodes %d time %d ",
                     0.01f * (float)(factor * bestScore), currentDepth, searchEntry.getNodes(),
                     Time.getTimeInMilliseconds() - searchEntry.getStartTime());
-
-            pvMoves = PVTable.getPVLine(boardStructure, currentDepth);
             analysePositionResult += String.format("pv ");
             for (int pvNum = 0; pvNum < pvMoves; pvNum++) {
                 analysePositionResult += String.format(boardStructure.getMoveAsString(boardStructure.getPVArrayEntry(pvNum)) +
