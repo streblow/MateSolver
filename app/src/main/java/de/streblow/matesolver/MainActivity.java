@@ -214,8 +214,8 @@ public class MainActivity extends AppCompatActivity {
                 boardView.setSquareSelected(false);
                 boardView.getBoard().resetBoard();
                 if (boardView.mBoardFlipped) {
+                    boardView.mBoardFlipped = false;
                     boardView.flipBoard();
-                    boardView.mBoardFlipped = !boardView.mBoardFlipped;
                 }
                 boardView.setText("");
                 tvLogView.setText("");
