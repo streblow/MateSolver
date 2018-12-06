@@ -49,15 +49,15 @@ public class AnalysePositionTask extends AsyncTask<Object, String, String> {
             score = (float)bestScore / 100.0f;
         else
             score = -(float)bestScore / 100.0f;
-        return String.format("Score: %.2f\nDepth: %d\nBest move: %s\nPly vector: %s", score, m_Plys, bestMoveStr, analysePositionResult);
+        return String.format("Score: %.2f\nDepth: %d\nBest move: %s\nBest line: %s", score, m_Plys, bestMoveStr, analysePositionResult);
     }
 
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
         if (boardView.getGame().getTurn()) { // black
-            boardView.setText(result + "\n1. ...");
-            textView.setText(result + "\n1. ...");
+            boardView.setText(result + "\n1. ... ");
+            textView.setText(result + "\n1. ... ");
         } else {
             boardView.setText(result + "\n");
             textView.setText(result + "\n");
@@ -144,7 +144,6 @@ public class AnalysePositionTask extends AsyncTask<Object, String, String> {
             }
 
             searchPosition(boardStructure, searchEntry);
-            bestMoveStr = String.format("%s", boardStructure.getMoveAsString(bestMove));
         }
     }
 
@@ -152,6 +151,12 @@ public class AnalysePositionTask extends AsyncTask<Object, String, String> {
         analysePositionResult = "";
         bestScore = -Search.INF;
         int pvMoves = 0;
+        int startPly = 1;
+        String startNo = "1. ";
+        if (boardStructure.getSide() == BoardColor.BLACK.value) {
+            startPly = 2;
+            startNo = "1. ... ";
+        }
         Search.clearForSearch(boardStructure, searchEntry);
 
         int factor = 1;
@@ -168,21 +173,33 @@ public class AnalysePositionTask extends AsyncTask<Object, String, String> {
             pvMoves = PVTable.getPVLine(boardStructure, currentDepth);
 
             bestMove = boardStructure.getPVArrayEntry(0);
+            bestMoveStr = boardStructure.getMoveAsLongString(bestMove);
             analysePositionResult = String.format("score %.2f depth %d nodes %d time %d ",
                     0.01f * (float)(factor * bestScore), currentDepth, searchEntry.getNodes(),
                     Time.getTimeInMilliseconds() - searchEntry.getStartTime());
             analysePositionResult += String.format("pv ");
+            int plyCounter = startPly;
+            analysePositionResult += startNo;
             for (int pvNum = 0; pvNum < pvMoves; pvNum++) {
-                analysePositionResult += String.format(boardStructure.getMoveAsString(boardStructure.getPVArrayEntry(pvNum)) +
-                        " ");
+                if ((plyCounter > 2) && ((plyCounter % 2) == 1))
+                    analysePositionResult += Integer.toString((plyCounter + 1) / 2) + ". ";
+                plyCounter += 1;
+                analysePositionResult += String.format(boardStructure.getMoveAsLongString(boardStructure.getPVArrayEntry(pvNum)) +
+                    " ");
             }
             analysePositionResult += String.format("\n");
             publishProgress(analysePositionResult);
         }
         analysePositionResult = "";
+        int plyCounter = startPly;
+        analysePositionResult += startNo;
         for (int pvNum = 0; pvNum < pvMoves; pvNum++) {
-            analysePositionResult += String.format(boardStructure.getMoveAsString(boardStructure.getPVArrayEntry(pvNum)) +
+            if ((plyCounter > 2) && ((plyCounter % 2) == 1))
+                analysePositionResult += Integer.toString((plyCounter + 1) / 2) + ". ";
+            plyCounter += 1;
+            analysePositionResult += String.format(boardStructure.getMoveAsLongString(boardStructure.getPVArrayEntry(pvNum)) +
                     " ");
+            MakeMove.makeMove(boardStructure, boardStructure.getPVArrayEntry(pvNum));
         }
     }
 }

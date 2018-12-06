@@ -67,6 +67,16 @@ public class Game {
         victory = position.isMate();
     }
 
+    public void checkVictory(Board board) {
+        String strFEN = board.getFEN();
+        if (turn == true)
+            strFEN += " w - - 0 1";
+        else
+            strFEN += " b - - 0 1";
+        Position position = new Position(strFEN);
+        victory = position.isMate();
+    }
+
     public boolean isCheck(Board oldBoard, int oldX, int oldY, int newX, int newY, boolean capturing) {
         String strFEN = oldBoard.getFEN();
         if (turn == true)
@@ -80,6 +90,16 @@ public class Game {
         } catch (IllegalMoveException ex) {
             return false;
         }
+        return position.isCheck();
+    }
+
+    public boolean isCheck(Board board) {
+        String strFEN = board.getFEN();
+        if (turn == false)
+            strFEN += " w - - 0 1";
+        else
+            strFEN += " b - - 0 1";
+        Position position = new Position(strFEN);
         return position.isCheck();
     }
 

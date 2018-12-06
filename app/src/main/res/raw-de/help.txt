@@ -2,9 +2,9 @@ MateSolver kann dazu genutzt werden, Schachstellungen zu analysieren. Es gibt zw
 "Analysemodus" und "Mattsuche".<br>
 <br>
 <h3>Modi</h3>
-Im "Analysemodus" können Züge basierend auf einer regulären Stellung gespielt werden, wobei Weiß zunächst immer zuerst ziehen darf. Das Zugrecht kann in diesem Modus gewechselt werden. Es kann auch der Wert der aktuellen Position von der App berechnet werden.<br>
+Im "Analysemodus" können Züge basierend auf einer regulären Stellung gespielt werden, wobei Weiß zunächst immer zuerst ziehen darf. Das Zugrecht kann in diesem Modus gewechselt werden. Es kann auch der Wert der aktuellen Position von der App berechnet werden. Eine Bauernumwandlung wird unterstützt (gegenwärtig nur zur Dame).<br>
 Im Modus "Mattsuche" kann eine reguläre Stellung aufgebaut werden, um die App nach einem Schachmatt in einer vorgegebenen Anzahl von Zügen suchen zu lassen, wobei hier die Mattsuche immer aus der Sicht von Weiß erfolgt. (z. B. Weiß setzt in 2 Zügen matt).<br>
-Das Wechseln zwischen den zwei Modi behält die Stellung bei. Beim Wechseln in den "Analysemodus", wird das Zugrecht auf Weiß gesetzt und der Zugzähler auf 1 zurückgesetzt. Eine berechnete Mattlösung im Textbereich wird gelöscht. Beim Wechseln in den Modus "Mattsuche", werden die im Textbereich notierten Züge aus dem "Analysemodus" gelöscht.<br>
+Das Wechseln zwischen den zwei Modi behält die Stellung bei. Beim Wechseln in den "Analysemodus", wird das Zugrecht auf Weiß gesetzt und der Zugzähler auf 1 zurückgesetzt. Eine berechnete Mattlösung im Textbereich wird gelöscht. Ein Wechseln des Zugrechts löscht ebenfalls den Textbereich. Beim Wechseln in den Modus "Mattsuche", werden die im Textbereich notierten Züge aus dem "Analysemodus" gelöscht. Eine Positionsanalyse im "Analysemodus" löscht ebenfalls den Textbereich, ergänzt aber die Ergebnisse der Positionsanalyse um die Notation der nachfolgenden Züge.<br>
 <br>
 <h3>Stellungseingabe/Ziehen</h3>
 Soll eine reguläre Stellung aufgebaut werden, muss sich MateSolver im Modus "Mattsuche" befinden. Im "Analysemodus" kann das Schachbrett nur in die Ausgangsstellung zurückgesetzt werden (die natürlich regulär ist). Wenn in den "Analysemodus" gewechselt wird und keine reguläre Stellung vorliegt, erscheint eine Meldung im Textbereich. Es ist dann nicht möglich zu ziehen. Gleiches passiert, wenn im Modus "Mattsuche" eine Mattsuche basierend auf einer irregulären Stellung angestoßen wird.<br>
@@ -20,7 +20,7 @@ Die App berechnet den Wert der aktuellen Position. Dabei wird ein Vorteil für W
 <b>Positionsanalyse abbrechen ("Analysemodus"):</b><br>
 Eine laufende Positionsanalyse wird abgebrochen.<br>
 <b>Zugrecht wechseln ("Analysemodus"):</b><br>
-Wechseln des Zugrechts. Es kann eine irreluläre Position entstehen.<br>
+Wechseln des Zugrechts. Es kann eine irreguläre Position entstehen.<br>
 <b>Brett drehen:</b><br>
 Das Brett wird gedreht.<br>
 <b>Brett leeren ("Mattsuche"):</b><br>

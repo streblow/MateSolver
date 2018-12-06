@@ -1089,4 +1089,58 @@ public class BoardStructure {
         }
         return moveString;
     }
+
+    /**
+     * Prints out the move in long notation.
+     *
+     * @param move
+     * @return moveString
+     */
+    public String getMoveAsLongString(int move) {
+        String moveString = "";
+
+        int fileFrom = fileBoard[MoveUtils.from(move)];
+        int rankFrom = rankBoard[MoveUtils.from(move)];
+        int fileTo = fileBoard[MoveUtils.to(move)];
+        int rankTo = rankBoard[MoveUtils.to(move)];
+        int promoted = MoveUtils.promoted(move);
+        int eaten = MoveUtils.captured(move);
+        int piece = getPiece(MoveUtils.from(move));
+        char pieceSymbols[] = new char[] { 0,
+                'P', 'N', 'B', 'R', 'Q', 'K', 'P', 'N', 'B', 'R', 'Q', 'K' };
+        String pieceString = new String(new char[] {pieceSymbols[piece]});
+        if (pieceString.equals("P"))
+            pieceString = "";
+        String moveType = "-";
+        if (eaten != 0)
+            moveType = "x";
+        String promotedPiece = "";
+
+        if (promoted != 0) {
+            promotedPiece = "Q";
+            if (BoardUtils.isPieceKnight(promoted)) {
+                promotedPiece = "N";
+            } else if (BoardUtils.isPieceRookOrQueen(promoted) &&
+                    !BoardUtils.isPieceBishopOrQueen(promoted)) {
+                promotedPiece = "R";
+            } else if (!BoardUtils.isPieceRookOrQueen(promoted) &&
+                    BoardUtils.isPieceBishopOrQueen(promoted)) {
+                promotedPiece = "B";
+            }
+        }
+        moveString = pieceString +
+                new String(new char[]{
+                        (char)('a' + fileFrom),
+                        (char)('1' + rankFrom)}) +
+                moveType +
+                new String(new char[]{
+                        (char)('a' + fileTo),
+                        (char)('1' + rankTo)}) +
+                promotedPiece;
+        if (moveString.equals("Ke1-g1") || moveString.equals("Ke8-g8"))
+            moveString = "0-0";
+        if (moveString.equals("Ke1-c1") || moveString.equals("Ke8-c8"))
+            moveString = "0-0-0";
+        return moveString;
+    }
 }

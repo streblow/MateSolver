@@ -192,6 +192,7 @@ public class BoardView extends View {
                     else
                         valid = !mGame.checkCheck(currentBoard, oldX, oldY, newX, newY, mBoard.hasPiece(newX, newY));
                     if (selectedPiece.checkLegalMove(flippedTouchPoint, mBoard) && valid) {
+                        String promotedPiece = "";
                         // Check for castling
                         if (selectedPiece.getType().equals("King") && (Math.abs(newX - oldX) == 2)) {
                             if (selectedPiece.getColor() == false) { //piece is white
@@ -241,9 +242,28 @@ public class BoardView extends View {
                                 mMove += 1;
                             }
                         } else {
-                            if (selectedPiece.getColor() == true) { //piece is black
+                            // handle promotion
+                            if (selectedPiece.getType().equals("Pawn"))
+                                if (selectedPiece.getColor() == false) { //pawn is white
+                                    if ((oldY == 1) && (newY == 0)) {
+                                        selectedPiece = new Rook(getContext(), oldX, oldY,  mSquareSize,false);
+                                        promotedPiece = "R";
+                                        if (mBoardFlipped)
+                                            selectedPiece.setLocationXY(7 - oldX, 7 - oldY);
+                                        mBoard.setSquare(oldX, oldY, selectedPiece);
+                                    }
+                                } else { // pawn is black
+                                    if ((oldY == 6) && (newY == 7)) {
+                                        selectedPiece = new Rook(getContext(), oldX, oldY,  mSquareSize, true);
+                                        promotedPiece = "R";
+                                        if (mBoardFlipped)
+                                            selectedPiece.setLocationXY(7 - oldX, 7 - oldY);
+                                        mBoard.setSquare(oldX, oldY, selectedPiece);
+                                    }
+                                }
+                            if (selectedPiece.getColor() == true) { // piece is black
                                 mText = getText() + " ";
-                            } else { //piece is white
+                            } else { // piece is white
                                 mText = getText() + mMove + ". ";
                             }
                             if (mBoard.hasPiece(newX, newY)) {
@@ -264,7 +284,10 @@ public class BoardView extends View {
                                 mText = getText() + "-" + this.columns[newX] +  (7 - newY+1);
                         }
                         tvLogView.setText(getText());
-                        mGame.checkVictory(currentBoard, oldX, oldY, newX, newY, eatenPiece != null);
+                        if (promotedPiece.equals(""))
+                            mGame.checkVictory(currentBoard, oldX, oldY, newX, newY, eatenPiece != null);
+                        else
+                            mGame.checkVictory(mBoard);
                         if (mGame.getVictory()) {
                             if (mGame.getTurn() == false) {
                                 mText = getText() + "#\n\n" + getContext().getString(R.string.white_mates);
@@ -277,11 +300,21 @@ public class BoardView extends View {
                             mMateInAnalyseMode = true;
                         } else {
                             ///TODO: Improve check tracing
-                            if (mGame.isCheck(currentBoard, oldX, oldY, newX, newY, eatenPiece != null)) {
-                                mText = getText() + "+";
-                                tvLogView.setText(getText());
-                                invalidate();
-                                showMessage(getContext().getString(R.string.check) + "!", "MateSolver");
+                            if (promotedPiece.equals("")) {
+                                if (mGame.isCheck(currentBoard, oldX, oldY, newX, newY, eatenPiece != null)) {
+                                    mText = getText() + "+";
+                                    tvLogView.setText(getText());
+                                    invalidate();
+                                    showMessage(getContext().getString(R.string.check) + "!", "MateSolver");
+                                }
+                            }
+                            else {
+                                if (mGame.isCheck(mBoard)) {
+                                    mText = getText() + "+";
+                                    tvLogView.setText(getText());
+                                    invalidate();
+                                    showMessage(getContext().getString(R.string.check) + "!", "MateSolver");
+                                }
                             }
                             String turn = mGame.changeTurn() + " " + getContext().getString(R.string.to_move);
                             tvLogLabel.setText("(" + getContext().getString(R.string.mode_analysis) + ") - " + turn);

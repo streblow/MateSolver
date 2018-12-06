@@ -2,11 +2,11 @@ MateSolver can be used to analyse chess positions. There are two modes:<br>
 "Analysis mode" and "Mate search".<br>
 <br>
 <h3>Modes</h3>
-In "Analysis mode" you can play moves based on a legal position, where initially white is always considered moving first. You can switch sides during this mode. You can also let the app evaluate the score of the current position.<br>
+In "Analysis mode" you can play moves based on a legal position, where initially white is always considered moving first. You can switch sides during this mode. You can also let the app evaluate the score of the current position. Pawn promotion is supported (underpromotion is not supported yet).<br>
 In mode "Mate search" you can set up a legal position and let the app search for a checkmate in a given number of moves, where white is always considered moving first (e.g. White mates in 2 moves).<br>
-Switching between both modes will preserve the position. Switching to "Analysis mode" will set white to move and reset the number of current move to 1. A calculated mate will be cleared from the text area. Switching to mode "Mate search" will erase all moves of "Analysis mode" from the text area.<br>
+Switching between both modes will preserve the position. Switching to "Analysis mode" will set white to move and reset the number of current move to 1. A calculated mate will be cleared from the text area. Switching sides will also clear the text area. Switching to mode "Mate search" will erase all moves of "Analysis mode" from the text area. A position analysis in "Analysis mode" will also clear the text area, but will add the notation of the following moves under the analysis results.<br>
 <br>
-<h3>Setting up board/Moving</h3>
+<h3>Setting up the board/Moving</h3>
 To set up a legal position, you must be in mode "Mate search". In "Analysis mode" you can only reset the board to the initial position (which is legal). When you switch to "Analysis mode" after having set up a non legal position, you will be noticed about the invalid position in the text area and no moves will be accepted. The same will happen in mode "Mate search", if you try to let the app search for checkmate from a non legal position.<br>
 Setting up the board or moving is done by tapping the square you want to move from (it is selected) and tapping the square you want to move to afterwards. In mode "Mate search" you can use the "pieces area" right of the board to get pieces from and to remove pieces to (no matter which was selected). If you tap to move to a square containing a piece, it will be substituted. If you tap a selected square or a non legal one, the selection is cancelled.<br>
 <br>
@@ -20,7 +20,7 @@ The app will evaluate the score of the current position. A positive value will m
 <b>Cancel analyse position ("Analysis mode"):</b><br>
 Cancel a running position analysis.<br>
 <b>Switch side ("Analysis mode"):</b><br>
-Switch side (side to move). An illegal position may occur.<br>
+Switch side (side to move). A non legal position may occur.<br>
 <b>Flip board:</b><br>
 The board will be flipped.<br>
 <b>Clear board ("Mate search"):</b><br>
