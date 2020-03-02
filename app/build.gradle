@@ -9,13 +9,13 @@ android {
             storePassword 'ABr3m9QW'
         }
     }
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "de.streblow.matesolver"
         minSdkVersion 16
-        targetSdkVersion 27
-        versionCode 10
-        versionName '2.6'
+        targetSdkVersion 28
+        versionCode 11
+        versionName '2.7'
     }
     buildTypes {
         release {
