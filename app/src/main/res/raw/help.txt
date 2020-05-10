@@ -16,7 +16,7 @@ The app will search for a checkmate in a given number of moves (white is conside
 <b>Cancel mate search ("Mate search"):</b><br>
 Cancel a running mate search.<br>
 <b>Analyse position ("Analysis mode"):</b><br>
-The app will evaluate the score of the current position. A positive value will mark an advantage for white and a negative value an advantage for black. The number of moves can be set up in menu item Options.<br>
+The app will evaluate a score of the current position. A positive value will mark an advantage for white and a negative value an advantage for black. The position is evaluated in pawn units. A value of 289 indicates a possible mate. The number of moves for the search depth can be set up in menu item Options.<br>
 <b>Cancel analyse position ("Analysis mode"):</b><br>
 Cancel a running position analysis.<br>
 <b>Switch side ("Analysis mode"):</b><br>

@@ -49,7 +49,7 @@ public class AnalysePositionTask extends AsyncTask<Object, String, String> {
             score = (float)bestScore / 100.0f;
         else
             score = -(float)bestScore / 100.0f;
-        return String.format("Score: %.2f\nDepth: %d\nBest move: %s\nBest line: %s", score, m_Plys, bestMoveStr, analysePositionResult);
+        return String.format("Score: %.2f\nDepth (ply): %d\nBest move: %s\nBest line: %s", score, m_Plys, bestMoveStr, analysePositionResult);
     }
 
     @Override

@@ -21,10 +21,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_mode_matesearch"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:id="@+id/btnMode"
         android:layout_below="@+id/cvBoardView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -16,7 +16,7 @@ Die App sucht nach einem Schachmatt in einer vorgegebenen Anzahl an Zügen (aus 
 <b>Mattsuche abbrechen ("Mattsuche"):</b><br>
 Eine laufende Mattsuche wird abgebrochen.<br>
 <b>Positionsanalyse ("Analysemodus"):</b><br>
-Die App berechnet den Wert der aktuellen Position. Dabei wird ein Vorteil für Weiß positiv und ein Vorteil von Schwarz negativ bewertet. Die Anzahl der Züge kann im Menüpunkt "Einstellungen" festgelegt werden.<br>
+Die App berechnet einen Wert für die aktuelle Position. Dabei wird ein Vorteil für Weiß positiv und ein Vorteil von Schwarz negativ bewertet. Die Bewertung erfolgt in Bauerneinheiten. Eine Bewertung mit dem Wert 289 weist auf ein Matt hin. Die Anzahl der Züge für die Suchtiefe kann im Menüpunkt "Einstellungen" festgelegt werden.<br>
 <b>Positionsanalyse abbrechen ("Analysemodus"):</b><br>
 Eine laufende Positionsanalyse wird abgebrochen.<br>
 <b>Zugrecht wechseln ("Analysemodus"):</b><br>
