@@ -38,4 +38,8 @@
     <string name="search_cancelled">Search cancelled</string>
     <string name="analysis">Analysis running...</string>
     <string name="analysis_cancelled">Analysis cancelled</string>
+    <string name="position_analysis_text">Score: %.2f\nDepth (ply): %d\nBest move: %s\nBest line: %s</string>
+    <string name="position_analysis_progress_text">score %.2f depth %d nodes %d time %d pv</string>
+    <string name="solution_found">Solution found\nCalculated variants:</string>
+    <string name="no_solution_found">No solution found\nCalculated variants:</string>
 </resources>

@@ -1,6 +1,6 @@
 <h2>MateSolver</h2>
-<b>Version 2.8 (Build 12)</b><br>
-&#169; 2020-05-10 Lars Streblow<br>
+<b>Version 2.9 (Build 13)</b><br>
+&#169; 2020-05-12 Lars Streblow<br>
 <br>
 streblow.gmxhome.de<br>
 lars.streblow@gmx.de

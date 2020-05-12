@@ -23,9 +23,12 @@ public class AnalysePositionTask extends AsyncTask<Object, String, String> {
     private static int bestMove;
     private static int bestScore;
     private static String m_Status_Text;
+    private static String m_Position_Analysis_Text;
+    private static String m_Position_Analysis_Progress_Text;
 
     public AnalysePositionTask(BoardView boardView, TextView textView,
-                               String fen, int plys, int color) {
+                               String fen, int plys, String analysistext,
+                               String analysisprogresstext, int color) {
         super();
         this.boardView = boardView;
         this.textView = textView;
@@ -39,6 +42,8 @@ public class AnalysePositionTask extends AsyncTask<Object, String, String> {
         bestMove = BoardUtils.NO_MOVE;
         bestScore = 0;
         m_Status_Text = textView.getText().toString();
+        m_Position_Analysis_Text=analysistext;
+        m_Position_Analysis_Progress_Text=analysisprogresstext;
     }
 
     @Override
@@ -49,7 +54,7 @@ public class AnalysePositionTask extends AsyncTask<Object, String, String> {
             score = (float)bestScore / 100.0f;
         else
             score = -(float)bestScore / 100.0f;
-        return String.format("Score: %.2f\nDepth (ply): %d\nBest move: %s\nBest line: %s", score, m_Plys, bestMoveStr, analysePositionResult);
+        return String.format(m_Position_Analysis_Text, score, m_Plys, bestMoveStr, analysePositionResult);
     }
 
     @Override
@@ -174,10 +179,10 @@ public class AnalysePositionTask extends AsyncTask<Object, String, String> {
 
             bestMove = boardStructure.getPVArrayEntry(0);
             bestMoveStr = boardStructure.getMoveAsLongString(bestMove);
-            analysePositionResult = String.format("score %.2f depth %d nodes %d time %d ",
+            analysePositionResult = String.format(m_Position_Analysis_Progress_Text,
                     0.01f * (float)(factor * bestScore), currentDepth, searchEntry.getNodes(),
                     Time.getTimeInMilliseconds() - searchEntry.getStartTime());
-            analysePositionResult += String.format("pv ");
+            analysePositionResult += " ";
             int plyCounter = startPly;
             analysePositionResult += startNo;
             for (int pvNum = 0; pvNum < pvMoves; pvNum++) {

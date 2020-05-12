@@ -138,7 +138,11 @@ public class MainActivity extends AppCompatActivity {
                     boardView.setText(getString(R.string.search));
                     tvLogView.setText(getString(R.string.search));
                     mateSearchTask = new MateSearchTask(boardView, tvLogView,
-                            boardView.getBoard().getFEN() + " w - - 0 1", mMateInMoves * 2 - 1, Chess.WHITE, mFirstMoveOnly);
+                            boardView.getBoard().getFEN() + " w - - 0 1",
+                            mMateInMoves * 2 - 1,
+                            Chess.WHITE, mFirstMoveOnly,
+                            getResources().getString(R.string.solution_found),
+                            getResources().getString(R.string.no_solution_found));
                     mateSearchTask.execute();
                 }
                 return true;
@@ -164,10 +168,18 @@ public class MainActivity extends AppCompatActivity {
                     tvLogView.setText(getString(R.string.analysis));
                     if (!boardView.getGame().getTurn())
                         analysePositionTask = new AnalysePositionTask(boardView, tvLogView,
-                                boardView.getBoard().getFEN() + " w - - 0 1", mMateInMoves * 2, Chess.WHITE);
+                                boardView.getBoard().getFEN() + " w - - 0 1",
+                                mMateInMoves * 2,
+                                getResources().getString(R.string.position_analysis_text),
+                                getResources().getString(R.string.position_analysis_progress_text),
+                                Chess.WHITE);
                     else
                         analysePositionTask = new AnalysePositionTask(boardView, tvLogView,
-                                boardView.getBoard().getFEN() + " b - - 0 1", mMateInMoves * 2, Chess.BLACK);
+                                boardView.getBoard().getFEN() + " b - - 0 1",
+                                mMateInMoves * 2,
+                                getResources().getString(R.string.position_analysis_text),
+                                getResources().getString(R.string.position_analysis_progress_text),
+                                Chess.BLACK);
                     analysePositionTask.execute();
                 }
                 return true;

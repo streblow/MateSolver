@@ -38,4 +38,8 @@
     <string name="search_cancelled">Mattsuche abgebrochen</string>
     <string name="analysis">Positionsanalyse läuft...</string>
     <string name="analysis_cancelled">Positionsanalyse abgebrochen</string>
+    <string name="position_analysis_text">Score: %.2f\nSuchtiefe (ply): %d\nBester Zug: %s\nBeste Variante: %s</string>
+    <string name="position_analysis_progress_text">Score %.2f Tiefe (ply) %d Knoten %d Zeit %d Variante</string>
+    <string name="solution_found">Lösung gefunden\nBerechnete Varianten:</string>
+    <string name="no_solution_found">Keine Lösung gefunden\nBerechnete Varianten:</string>
 </resources>

@@ -26,11 +26,14 @@ public class MateSearchTask extends AsyncTask<Object, String, String> {
     private static boolean m_FoundSolution;
     private static boolean m_showFirstOnly;
     private static String m_Status_Text;
+    private static String m_Solution_Found_Text;
+    private static String m_No_Solution_Found_Text;
 
     private static final int MAX_PLY = 15; // Limit to maximal mate in 8
 
     public MateSearchTask(BoardView boardView, TextView textView,
-                          String fen, int plys, int color, boolean firstmoveonly) {
+                          String fen, int plys, int color, boolean firstmoveonly,
+                          String solutionfoundtext, String nosolutionfoundtext) {
         super();
         this.boardView = boardView;
         this.textView = textView;
@@ -45,6 +48,8 @@ public class MateSearchTask extends AsyncTask<Object, String, String> {
         m_FoundSolution = false;
         m_showFirstOnly = firstmoveonly;
         m_Status_Text = textView.getText().toString();
+        m_Solution_Found_Text=solutionfoundtext;
+        m_No_Solution_Found_Text=nosolutionfoundtext;
     }
 
     @Override
@@ -77,10 +82,10 @@ public class MateSearchTask extends AsyncTask<Object, String, String> {
                 }
                 m_Solution = solution;
             }
-            return "Solution found\nCalculated variants: " + m_CalculatedPositions + "\n" + m_Solution;
+            return m_Solution_Found_Text + " " + m_CalculatedPositions + "\n" + m_Solution;
         }
         else
-            return "No solution found\nCalculated variants: " + m_CalculatedPositions + "\n";
+            return m_No_Solution_Found_Text + " " + m_CalculatedPositions + "\n";
     }
 
     @Override
